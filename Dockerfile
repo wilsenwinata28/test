@@ -1,0 +1,36 @@
+FROM registry.gitlab.com/wilsenwinata/php-server
+
+#Composer#
+COPY composer.json /var/www/html
+COPY database /var/www/html/database
+WORKDIR /var/www/html
+
+RUN composer install --no-scripts
+#End of Composer#
+
+#Code Setting#
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+COPY ./docker/supervisord.conf /etc/supervisord.conf
+#COPY ./docker/php.ini /usr/local/etc/php
+COPY . /var/www/html/
+
+#RUN composer dump-autoload
+RUN composer dump-autoload
+RUN php artisan config:clear
+#End Of Code Setting#
+
+#cron job scheduler
+COPY ./docker/laravel-cron /var/spool/cron/crontabs/root
+RUN crond -L /var/www/html/cron.log
+#end cron job
+
+
+RUN cp .env.production .env
+
+RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data /var/www/html/public
+
+RUN chown -R www-data:www-data /tmp
+
+EXPOSE 80 443
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

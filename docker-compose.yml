@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  main:
+    build:
+      dockerfile: Dockerfile.master
+      context: .
+    container_name: bakutansiapp
+    environment:
+      COMPOSER_MEMORY_LIMIT: -1
+    restart: always
+    volumes:
+      - .:/var/www/html
+      - ./docker/supervisord.conf:/etc/supervisord.conf
+    ports:
+      - "1200:80"
+
+  mysql:
+    build:
+      context: ./docker/db
+      dockerfile: Dockerfile
+    container_name: bakutansi_mysql
+    environment:
+      MYSQL_DATABASE: main_mysql
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./tmp/mysql_data:/var/lib/mysql
+    ports:
+      - "3386:3306"

@@ -1,0 +1,304 @@
+openapi: 3.0.3
+info:
+    title: 'Bebas Akutansi'
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost:1200'
+paths:
+    /api/get_user:
+        get:
+            summary: 'Get User List'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: true
+                                    data: [{ id: 2, user_id: 1, status: ACTIVE, position: 'test 123', user: { id: 1, name: test, email: test@gmail.com, created_at: '2021-03-20T08:23:45.000000Z', updated_at: '2021-03-20T08:23:45.000000Z' } }]
+                                properties:
+                                    status: { type: boolean, example: true }
+                                    data: { type: array, example: [{ id: 2, user_id: 1, status: ACTIVE, position: 'test 123', user: { id: 1, name: test, email: test@gmail.com, created_at: '2021-03-20T08:23:45.000000Z', updated_at: '2021-03-20T08:23:45.000000Z' } }], items: { type: object } }
+            tags:
+                - Users
+            security: []
+    '/api/get_user/{user_id}':
+        get:
+            summary: 'Get User Detail'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: true
+                                    data: []
+                                properties:
+                                    status: { type: boolean, example: true }
+                                    data: { type: array, example: [] }
+            tags:
+                - Users
+            security: []
+        parameters:
+            -
+                in: path
+                name: user_id
+                description: ''
+                example: et
+                required: true
+                schema:
+                    type: string
+    '/api/post_user_data/{user_id}':
+        post:
+            summary: 'Store User'
+            description: ''
+            parameters:
+                -
+                    in: query
+                    name: position
+                    description: string.
+                    example: testasd
+                    required: true
+                    schema:
+                        type: string
+                        description: string.
+                        example: testasd
+                -
+                    in: query
+                    name: status
+                    description: string.
+                    example: active
+                    required: true
+                    schema:
+                        type: string
+                        description: string.
+                        example: active
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: false
+                                    messages: ['500 error']
+                                properties:
+                                    status: { type: boolean, example: false }
+                                    messages: { type: array, example: ['500 error'], items: { type: string } }
+            tags:
+                - Users
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                position:
+                                    type: string
+                                    description: ''
+                                    example: impedit
+                                status:
+                                    type: string
+                                    description: ''
+                                    example: incidunt
+                            required:
+                                - position
+                                - status
+            security: []
+        parameters:
+            -
+                in: path
+                name: user_id
+                description: ''
+                example: et
+                required: true
+                schema:
+                    type: string
+    '/api/put_user_data/{user_id}/{id}':
+        put:
+            summary: 'Update User'
+            description: ''
+            parameters:
+                -
+                    in: query
+                    name: position
+                    description: string.
+                    example: testdsa
+                    required: true
+                    schema:
+                        type: string
+                        description: string.
+                        example: testdsa
+                -
+                    in: query
+                    name: status
+                    description: string.
+                    example: inactive
+                    required: true
+                    schema:
+                        type: string
+                        description: string.
+                        example: inactive
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: true
+                                    data: []
+                                properties:
+                                    status: { type: boolean, example: true }
+                                    data: { type: array, example: [] }
+            tags:
+                - Users
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                position:
+                                    type: string
+                                    description: ''
+                                    example: accusantium
+                                status:
+                                    type: string
+                                    description: ''
+                                    example: ut
+                            required:
+                                - position
+                                - status
+            security: []
+        parameters:
+            -
+                in: path
+                name: user_id
+                description: ''
+                example: expedita
+                required: true
+                schema:
+                    type: string
+            -
+                in: path
+                name: id
+                description: ''
+                example: sit
+                required: true
+                schema:
+                    type: string
+    '/api/delete_user_data/{user_id}':
+        delete:
+            summary: 'Delete User'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: true
+                                    data: []
+                                properties:
+                                    status: { type: boolean, example: true }
+                                    data: { type: array, example: [] }
+            tags:
+                - Users
+            security: []
+        parameters:
+            -
+                in: path
+                name: user_id
+                description: ''
+                example: quisquam
+                required: true
+                schema:
+                    type: string
