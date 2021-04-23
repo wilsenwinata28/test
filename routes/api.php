@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/get_user', 'api\UserDataController@getUsersData');
+/*Route::get('/get_user', 'api\UserDataController@getUsersData');
 Route::get('/get_user/{user_id}', 'api\UserDataController@getUserData');
 Route::post('/post_user_data/{user_id}', 'api\UserDataController@postUserData');
 Route::put('/put_user_data/{user_id}/{id}', 'api\UserDataController@putUserData');
-Route::delete('/delete_user_data/{user_id}', 'api\UserDataController@deleteUserData');
+Route::delete('/delete_user_data/{user_id}', 'api\UserDataController@deleteUserData');*/

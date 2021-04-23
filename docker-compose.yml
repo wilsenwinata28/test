@@ -5,7 +5,7 @@ services:
     build:
       dockerfile: Dockerfile.master
       context: .
-    container_name: bakutansiapp
+    container_name: test_app
     environment:
       COMPOSER_MEMORY_LIMIT: -1
     restart: always
@@ -19,7 +19,7 @@ services:
     build:
       context: ./docker/db
       dockerfile: Dockerfile
-    container_name: bakutansi_mysql
+    container_name: test_mysql
     environment:
       MYSQL_DATABASE: main_mysql
       MYSQL_ROOT_PASSWORD: root

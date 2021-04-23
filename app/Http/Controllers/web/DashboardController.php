@@ -19,4 +19,23 @@ class DashboardController extends Controller
         $data['users'] = $this->userRepository->getUser();
         return view('main.dashboard')->with($data);
     }
+
+    function first($a,$b) {
+        $data = [];
+
+        for($a; $a>$b; $a--) {
+            $data[] = $a;
+        }
+
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+        die();
+    }
+
+    function second() {
+        $key = base64_encode(time());
+        echo $key;
+        die();
+    }
 }
