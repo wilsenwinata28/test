@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## How to run Test Localy
 1. ```docker-compose up -d```
-1. ```docker exec -it bakutansiapp sh```
+1. ```docker exec -it test_app sh```
 2. ```composer dump-autoload```
 3. ```php artisan migrate```
 4. ```php artisan db:seed```
